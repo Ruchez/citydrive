@@ -1,5 +1,3 @@
-import interiorImg from '../assets/interior.png'
-
 const SellSection = () => {
     return (
         <section id="sell" className="sell-section">
