@@ -1115,10 +1115,6 @@ body {
   font-weight: 700;
 }
 
-.footer-signature-clinical {
-  color: var(--accent-primary);
-  opacity: 0.5;
-}
 
 @media (max-width: 1200px) {
   .footer-grid-asymmetric {

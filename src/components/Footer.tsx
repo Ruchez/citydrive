@@ -55,7 +55,6 @@ const Footer = () => {
 
                 <div className="footer-bottom-pure">
                     <p>© 2026 CITYDRIVE AUTO SALES KENYA</p>
-                    <p className="footer-signature-clinical">Architectural Purity 4.0</p>
                 </div>
             </div>
         </footer>
