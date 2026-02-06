@@ -1,63 +1,61 @@
 const SellSection = () => {
     return (
         <section id="sell" className="sell-section">
-            <div className="container sell-grid">
-                <div className="sell-info">
-                    <h2 className="section-title">
-                        Sell Your Car <br />
-                        <span className="accent-text">The Boutique Way</span>
+            <div className="container sell-grid-asymmetric">
+                <div className="sell-narrative">
+                    <h4 className="footer-clinical-label">The Exchange</h4>
+                    <h2 className="sell-title-museum">
+                        Curated Liquidity <br />
+                        <span className="title-weight-800">For The Discerning.</span>
                     </h2>
-                    <p className="hero-subtitle">
-                        Experience a curated selling process. We don't just list cars; we market a lifestyle to Kenya's most discerning buyers.
+                    <p className="sell-mission-clinical">
+                        We transform the traditional sales process into a boutique appraisal experience.
+                        Targeting Kenya's elite automotive collectors with surgical precision.
                     </p>
 
-                    <div className="selling-steps">
+                    <div className="sell-process-cinematic">
                         {[
-                            { step: '01', title: 'Valuation', desc: 'Expert appraisal of your vehicle.' },
-                            { step: '02', title: 'Curation', desc: 'Professional photography & detailing.' },
-                            { step: '03', title: 'Closing', desc: 'Secure payment & paperwork.' }
+                            { step: '01', title: 'Architectural Appraisal', desc: 'A multi-point clinical evaluation of your vehicle’s pedigree.' },
+                            { step: '02', title: 'Visual Curation', desc: 'Professional editorial photography in our Regen studio.' },
+                            { step: '03', title: 'Private Placement', desc: 'Strategic exposure to our exclusive network of certified buyers.' }
                         ].map((s) => (
-                            <div className="step-card glass" key={s.step}>
-                                <span className="step-num">{s.step}</span>
-                                <div>
-                                    <h4 style={{ color: 'var(--text-primary)' }}>{s.title}</h4>
-                                    <p style={{ fontSize: '0.85rem' }}>{s.desc}</p>
+                            <div className="step-item-pure" key={s.step}>
+                                <div className="step-count-clinical">{s.step}</div>
+                                <div className="step-content">
+                                    <h4 className="step-title-bold">{s.title}</h4>
+                                    <p className="step-desc-light">{s.desc}</p>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
 
-                <div className="sell-form-container">
-                    <form className="sell-form glass">
-                        <h3 className="form-header">List Your Vehicle</h3>
+                <div className="sell-form-vault">
+                    <form className="museum-form">
+                        <h3 className="form-header-clinical">Appraisal Submission</h3>
 
-                        <div className="premium-form-group">
-                            <input type="text" id="model" required placeholder=" " />
-                            <label htmlFor="model">Car Model (e.g. BMW X5)</label>
-                            <div className="form-line"></div>
+                        <div className="clinical-input-group">
+                            <label>Vehicle Model</label>
+                            <input type="text" placeholder="e.g. Land Cruiser 300" required />
                         </div>
 
-                        <div className="premium-form-group">
-                            <input type="number" id="year" required placeholder=" " />
-                            <label htmlFor="year">Year of Manufacture</label>
-                            <div className="form-line"></div>
+                        <div className="clinical-input-group">
+                            <label>Production Year</label>
+                            <input type="number" placeholder="2024" required />
                         </div>
 
-                        <div className="premium-form-group">
-                            <input type="text" id="price" required placeholder=" " />
-                            <label htmlFor="price">Expected Price (KES)</label>
-                            <div className="form-line"></div>
+                        <div className="clinical-input-group">
+                            <label>Valuation Bench (KES)</label>
+                            <input type="text" placeholder="Expected Value" required />
                         </div>
 
-                        <div className="premium-form-group">
-                            <textarea id="details" rows={2} required placeholder=" "></textarea>
-                            <label htmlFor="details">Additional Highlights</label>
-                            <div className="form-line"></div>
+                        <div className="clinical-input-group">
+                            <label>Architectural Notes</label>
+                            <textarea rows={2} placeholder="History, modifications, condition..."></textarea>
                         </div>
 
-                        <button type="button" className="btn-primary" style={{ width: '100%', marginTop: '1rem' }}>
-                            Start My Appraisal
+                        <button type="button" className="btn-appraisal-clinical">
+                            Initiate Appraisal
                         </button>
                     </form>
                 </div>
