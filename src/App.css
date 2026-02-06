@@ -77,72 +77,45 @@ body {
   color: var(--accent-primary);
 }
 
-/* Navbar */
+/* Navbar - Simple Docked Design */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 1.5rem 0;
   width: 100%;
-  background: transparent;
-  border-bottom: 1px solid transparent;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--bg-deep);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 1rem 0;
+  transition: all 0.3s ease;
 }
 
 .navbar.scrolled {
-  padding: 1rem 0;
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--glass-border);
+  padding: 0.7rem 0;
+  background: var(--bg-surface);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .nav-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.logo-container {
-  display: flex;
-  align-items: center;
-}
-
 .nav-logo {
-  height: 100px;
-  /* Further increased scale */
+  height: 50px;
   width: auto;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: height 0.3s ease;
 }
 
-.logo-container:hover .nav-logo {
-  transform: scale(1.1) rotate(-3deg);
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.theme-toggle-nav {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  padding: 0.5rem;
-  /* Reduced padding */
-  border-radius: 50%;
-  font-size: 1rem;
-  /* Reduced font size */
-  cursor: pointer;
-  transition: var(--transition-smooth);
-}
-
-.theme-toggle-nav:hover {
-  background: var(--accent-primary);
-  transform: translateY(-2px);
+.navbar.scrolled .nav-logo {
+  height: 45px;
 }
 
 .nav-links {
@@ -152,31 +125,37 @@ body {
 }
 
 .nav-links a {
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: 500;
+  font-size: 0.9rem;
   color: var(--text-secondary);
   text-decoration: none;
   transition: var(--transition-smooth);
-  position: relative;
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--accent-primary);
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
 }
 
 .nav-links a:hover {
+  color: var(--accent-primary);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.theme-toggle-nav {
+  background: none;
+  border: none;
   color: var(--text-primary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.theme-toggle-nav:hover {
+  color: var(--accent-primary);
 }
 
 /* Hero Section */
@@ -891,34 +870,28 @@ footer {
     height: 50px;
   }
 
+  .navbar {
+    top: 1rem;
+    padding: 0.6rem 1.5rem;
+  }
+
   .nav-links {
-    width: 300px;
+    display: none;
+    /* Hide for mobile redesign simplicity or toggle later */
+    position: fixed;
+    top: 5rem;
+    left: 1rem;
+    right: 1rem;
+    flex-direction: column;
+    background: var(--bg-surface);
+    padding: 2rem;
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+    transform: none;
   }
 
-  .hero {
-    padding: 120px 0 5rem;
-  }
-
-  .hero-title {
-    font-size: 3rem;
-    line-height: 1.1;
-  }
-
-  .hero-subtitle {
-    font-size: 1.2rem;
-  }
-
-  .hero-stats {
-    gap: 3rem;
-  }
-
-  .sell-grid {
-    grid-template-columns: 1fr;
-    gap: 4rem;
-  }
-
-  .sell-form {
-    padding: 2.5rem;
+  .nav-links.active {
+    display: flex;
   }
 }
 
@@ -938,6 +911,57 @@ footer {
 
 .mobile-menu-btn {
   display: none;
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.burger {
+  width: 24px;
+  height: 2px;
+  background: var(--text-primary);
+  position: relative;
+  transition: 0.3s;
+}
+
+.burger::before,
+.burger::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: var(--text-primary);
+  transition: 0.3s;
+}
+
+.burger::before {
+  top: -6px;
+}
+
+.burger::after {
+  bottom: -6px;
+}
+
+.burger.active {
+  background: transparent;
+}
+
+.burger.active::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.burger.active::after {
+  transform: rotate(-45deg);
+  bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block;
+  }
 }
 
 /* WhatsApp Floating Button */
