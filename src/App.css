@@ -780,72 +780,168 @@ body {
   }
 }
 
-/* Sell Section */
+/* Sell Page Redesign: Architectural Sophistication */
 .sell-section {
-  padding: 10rem 0;
-  background: var(--bg-surface);
+  padding: 12rem 0;
+  background: var(--bg-deep);
 }
 
-.sell-grid {
+.sell-grid-asymmetric {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 10rem;
-  /* Increased architectural gap */
-  align-items: center;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 12rem;
+  align-items: flex-start;
 }
 
-@media (max-width: 992px) {
-  .sell-grid {
-    grid-template-columns: 1fr;
-    gap: 4rem;
-  }
+.sell-narrative {
+  max-width: 650px;
 }
 
-/* Sell Section Refinements */
-.selling-steps {
+.sell-title-museum {
+  font-size: 4.8rem;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: white;
+  margin-bottom: 2.5rem;
+}
+
+.sell-title-museum .title-weight-800 {
+  font-weight: 800;
+  color: var(--accent-primary);
+}
+
+.sell-mission-clinical {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 5rem;
+  max-width: 500px;
+}
+
+.sell-process-cinematic {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 3rem;
+  gap: 3.5rem;
 }
 
-.step-card {
+.step-item-pure {
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 1.5rem;
-  border-radius: 20px;
-  transition: var(--transition-smooth);
+  gap: 2.5rem;
+  align-items: flex-start;
 }
 
-.step-card:hover {
-  transform: translateX(10px);
-  border-color: var(--accent-primary);
-}
-
-.step-num {
-  font-size: 1.5rem;
+.step-count-clinical {
+  font-size: 0.9rem;
   font-weight: 900;
   color: var(--accent-primary);
-  opacity: 0.5;
+  border-bottom: 1px solid var(--accent-primary);
+  padding-bottom: 0.2rem;
   font-family: var(--font-display);
 }
 
-.sell-form-container {
-  padding: 1rem;
+.step-title-bold {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: white;
+  margin-bottom: 0.5rem;
 }
 
-.sell-form {
-  padding: 4rem;
-  border-radius: 40px;
-  box-shadow: var(--shadow-premium);
+.step-desc-light {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Museum Form Aesthetics */
+.sell-form-vault {
   background: var(--bg-surface);
   border: 1px solid var(--glass-border);
+  padding: 4rem;
+  position: relative;
+}
+
+.form-header-clinical {
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--accent-primary);
+  margin-bottom: 3rem;
+  opacity: 0.9;
+}
+
+.clinical-input-group {
+  margin-bottom: 2.5rem;
+}
+
+.clinical-input-group label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 1rem;
+}
+
+.clinical-input-group input,
+.clinical-input-group textarea {
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--glass-border);
+  padding: 0.8rem 0;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  outline: none;
+  transition: border-color 0.4s ease;
+}
+
+.clinical-input-group input:focus,
+.clinical-input-group textarea:focus {
+  border-color: var(--accent-primary);
+}
+
+.btn-appraisal-clinical {
+  width: 100%;
+  background: white;
+  color: black;
+  padding: 1.2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  margin-top: 2rem;
+}
+
+.btn-appraisal-clinical:hover {
+  background: var(--accent-primary);
+  color: white;
+  transform: translateY(-5px);
+}
+
+@media (max-width: 1024px) {
+  .sell-grid-asymmetric {
+    grid-template-columns: 1fr;
+    gap: 6rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .sell-form {
-    padding: 2.5rem 1.5rem;
+  .sell-title-museum {
+    font-size: 3.2rem;
+  }
+
+  .sell-form-vault {
+    padding: 2.5rem;
   }
 }
 
