@@ -109,13 +109,17 @@ body {
 }
 
 .nav-logo {
-  height: 50px;
+  height: 60px;
+  /* Increased 10% from 50px-ish */
   width: auto;
-  transition: height 0.3s ease;
+  filter: brightness(0) invert(1);
+  /* Force white */
+  transition: all 0.3s ease;
+  object-fit: contain;
 }
 
 .navbar.scrolled .nav-logo {
-  height: 45px;
+  height: 52px;
 }
 
 .nav-links {
