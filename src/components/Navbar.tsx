@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import logo from '../assets/logo.png'
 
 interface NavbarProps {
@@ -9,6 +10,7 @@ interface NavbarProps {
 const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
     const [isOpen, setIsOpen] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
+    const location = useLocation()
 
     useEffect(() => {
         const handleScroll = () => {
@@ -18,17 +20,29 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
+    // Smooth scroll for anchors on home page
+    const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+        if (location.pathname === '/') {
+            e.preventDefault()
+            const element = document.getElementById(id)
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' })
+            }
+            setIsOpen(false)
+        }
+    }
+
     return (
         <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
             <div className="nav-content">
-                <div className="logo-container">
+                <Link to="/" className="logo-container" onClick={() => setIsOpen(false)}>
                     <img src={logo} alt="CityDrive Auto" className="nav-logo" />
-                </div>
+                </Link>
 
                 <div className={`nav-links ${isOpen ? 'active' : ''}`}>
-                    <a href="#buy" onClick={() => setIsOpen(false)}>Inventory</a>
-                    <a href="#sell" onClick={() => setIsOpen(false)}>Sell</a>
-                    <a href="#about" onClick={() => setIsOpen(false)}>Company</a>
+                    <a href="/#buy" onClick={(e) => handleAnchorClick(e, 'buy')}>Inventory</a>
+                    <Link to="/sell" onClick={() => setIsOpen(false)}>Sell</Link>
+                    <a href="/#about" onClick={(e) => handleAnchorClick(e, 'about')}>Company</a>
                     <div className="mobile-menu-footer">
                         <p className="menu-footer-label">Direct Concierge</p>
                         <a href="https://wa.me/254726600141" className="menu-whatsapp-link" target="_blank" rel="noopener noreferrer">
@@ -54,9 +68,9 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
                         )}
                     </button>
 
-                    <a href="#contact" className="btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.8rem' }}>
+                    <Link to="/#contact" className="btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.8rem' }} onClick={(e) => handleAnchorClick(e as any, 'contact')}>
                         Connect
-                    </a>
+                    </Link>
                 </div>
             </div>
         </nav>

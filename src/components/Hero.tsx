@@ -47,10 +47,6 @@ const Hero = ({ onSearch }: HeroProps) => {
                     </form>
                 </div>
 
-                <div className="gallery-scroll-prompt" onClick={() => document.getElementById('buy')?.scrollIntoView({ behavior: 'smooth' })}>
-                    <span className="prompt-text">SCROLL TO EXPLORE</span>
-                    <div className="prompt-line"></div>
-                </div>
             </div>
         </header>
     )
