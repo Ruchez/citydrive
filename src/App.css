@@ -881,21 +881,70 @@ footer {
 
   .nav-links {
     display: none;
-    /* Hide for mobile redesign simplicity or toggle later */
     position: fixed;
-    top: 5rem;
-    left: 1rem;
-    right: 1rem;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     flex-direction: column;
-    background: var(--bg-surface);
-    padding: 2rem;
-    border-radius: 30px;
-    border: 1px solid var(--glass-border);
-    transform: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(10, 10, 11, 0.9);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    z-index: 1000;
+    gap: 2rem;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
   }
 
   .nav-links.active {
     display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  .nav-links a {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    text-transform: none;
+    /* More modern than strictly uppercase here */
+  }
+
+  /* Mobile Exclusive Footer */
+  .mobile-menu-footer {
+    margin-top: 5rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    width: 80%;
+  }
+
+  .menu-footer-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--accent-primary);
+    margin-bottom: 0.7rem;
+    font-weight: 900;
+  }
+
+  .menu-whatsapp-link {
+    font-size: 1.4rem !important;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+    text-decoration: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-menu-footer {
+    display: none;
   }
 }
 

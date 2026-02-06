@@ -29,6 +29,12 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
                     <a href="#buy" onClick={() => setIsOpen(false)}>Inventory</a>
                     <a href="#sell" onClick={() => setIsOpen(false)}>Sell</a>
                     <a href="#about" onClick={() => setIsOpen(false)}>Company</a>
+                    <div className="mobile-menu-footer">
+                        <p className="menu-footer-label">Direct Concierge</p>
+                        <a href="https://wa.me/254726600141" className="menu-whatsapp-link" target="_blank" rel="noopener noreferrer">
+                            +254 726 600 141
+                        </a>
+                    </div>
                 </div>
 
                 <div className="nav-actions">
