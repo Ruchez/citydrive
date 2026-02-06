@@ -8,7 +8,6 @@ import Footer from './components/Footer'
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('')
-  const [maxPrice, setMaxPrice] = useState(Infinity)
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('citydrive-theme') || 'dark'
   })
@@ -39,10 +38,10 @@ function App() {
     <div className={`app-container ${theme}-theme`}>
       <div className="site-watermark">CITYDRIVE</div>
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
-      <Hero onSearch={setSearchQuery} onPriceFilter={setMaxPrice} />
+      <Hero onSearch={setSearchQuery} />
       <main>
         <div className="reveal">
-          <FeaturedCars query={searchQuery} maxPrice={maxPrice} />
+          <FeaturedCars query={searchQuery} maxPrice={Infinity} />
         </div>
         <div className="reveal">
           <SellSection />
