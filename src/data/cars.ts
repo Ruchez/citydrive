@@ -274,3 +274,64 @@ export const cars: Car[] = [
         ]
     }
 ];
+
+// Mock data generator for testing large inventories
+const carBrands = ['Toyota', 'Mazda', 'Honda', 'Nissan', 'Subaru', 'Mercedes-Benz', 'BMW', 'Audi', 'Volkswagen', 'Land Rover'];
+const carModels: Record<string, string[]> = {
+    'Toyota': ['Vitz', 'Fielder', 'Axio', 'Premio', 'Crown', 'Harrier', 'Prado', 'Land Cruiser'],
+    'Mazda': ['Demio', 'Axela', 'Atenza', 'CX-5', 'CX-3'],
+    'Honda': ['Fit', 'Vezel', 'Shuttle', 'Accord', 'CR-V'],
+    'Nissan': ['Note', 'Tiida', 'Wingroad', 'X-Trail', 'Patrol'],
+    'Subaru': ['Impreza', 'Legacy', 'Forester', 'Outback', 'XV'],
+    'Mercedes-Benz': ['C-Class', 'E-Class', 'GLE', 'GLC', 'S-Class'],
+    'BMW': ['3 Series', '5 Series', 'X3', 'X5', 'X1'],
+    'Audi': ['A4', 'A6', 'Q5', 'Q7', 'A3'],
+    'Volkswagen': ['Golf', 'Passat', 'Tiguan', 'Touareg'],
+    'Land Rover': ['Discovery', 'Range Rover', 'Defender', 'Evoque']
+};
+
+export function generateMockCars(count: number): Car[] {
+    const mockCars: Car[] = [];
+    const years = [2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
+    const locations = ['Nairobi, Kenya', 'Mombasa, Kenya', 'Nakuru, Kenya', 'Kisumu, Kenya', 'Eldoret, Kenya'];
+    const fuelTypes = ['Petrol', 'Diesel', 'Petrol Hybrid'];
+    const transmissions = ['Automatic', 'Manual', 'CVT', 'DSG Automatic'];
+
+    for (let i = 0; i < count; i++) {
+        const brand = carBrands[Math.floor(Math.random() * carBrands.length)];
+        const modelList = carModels[brand];
+        const model = modelList[Math.floor(Math.random() * modelList.length)];
+        const year = years[Math.floor(Math.random() * years.length)];
+        const rawPrice = Math.floor(Math.random() * 15000000) + 300000; // 300K to 15M
+
+        mockCars.push({
+            id: cars.length + i + 1,
+            name: `${brand} ${model}`,
+            rawPrice,
+            price: `KES ${rawPrice.toLocaleString()}`,
+            specs: `${brand} • ${fuelTypes[Math.floor(Math.random() * fuelTypes.length)]} • ${transmissions[Math.floor(Math.random() * transmissions.length)]} • ${year}`,
+            img: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=800',
+            year,
+            location: locations[Math.floor(Math.random() * locations.length)],
+            availability: Math.random() > 0.2 ? 'Available' : (Math.random() > 0.5 ? 'Reserved' : 'Sold'),
+            drive: Math.random() > 0.5 ? 'AWD' : '2WD',
+            mileage: `${Math.floor(Math.random() * 150000) + 10000} KM`,
+            engineSize: `${Math.floor(Math.random() * 3000) + 1000} CC`,
+            fuelType: fuelTypes[Math.floor(Math.random() * fuelTypes.length)],
+            horsePower: `${Math.floor(Math.random() * 300) + 60} Hp`,
+            transmission: transmissions[Math.floor(Math.random() * transmissions.length)],
+            torque: `${Math.floor(Math.random() * 500) + 100} Nm`,
+            aspiration: Math.random() > 0.5 ? 'Turbocharged' : 'Natural',
+            acceleration: `${(Math.random() * 8 + 6).toFixed(1)} Secs`,
+            description: `A reliable ${brand} ${model} in excellent condition. Perfect for daily commuting and family use.`,
+            sellerType: Math.random() > 0.5 ? 'Verified Dealer' : 'Private Seller',
+            conditionScore: Math.floor(Math.random() * 3) + 7.5,
+            images: ['https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=800']
+        });
+    }
+
+    return mockCars;
+}
+
+// Export combined inventory (real + mock)
+export const allCars = [...cars, ...generateMockCars(100)];

@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import './details.css'
+import './collection.css'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Sell from './pages/Sell'
+import Collection from './pages/Collection'
 import VehicleDetails from './pages/VehicleDetails'
 import Footer from './components/Footer'
 
@@ -43,6 +45,7 @@ function App() {
         <Navbar theme={theme} onToggleTheme={toggleTheme} />
         <Routes>
           <Route path="/" element={<Home searchQuery={searchQuery} setSearchQuery={setSearchQuery} />} />
+          <Route path="/collection" element={<Collection />} />
           <Route path="/vehicles/:id" element={<VehicleDetails />} />
           <Route path="/sell" element={<Sell />} />
         </Routes>
