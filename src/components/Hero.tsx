@@ -16,7 +16,7 @@ const Hero = ({ onSearch }: HeroProps) => {
     }
 
     return (
-        <header className="hero-gallery" ref={heroRef}>
+        <header className="hero-gallery hero-dark-mode-forced" ref={heroRef}>
             <div className="gallery-viewport">
                 <img src={heroImg} alt="CityDrive Selection" className="gallery-subject" />
                 <div className="gallery-light-wash"></div>

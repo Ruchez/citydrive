@@ -1,21 +1,23 @@
 :root {
   /* Color Palette */
-  --bg-deep: #0a0a0b;
-  --bg-surface: #161618;
+  --bg-deep: #0A0A0B;
+  --bg-surface: #141416;
   --bg-card: #1f1f23;
   --glass: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  
-  --accent-primary: #ff6b00; /* Vibrant Kenyan Orange */
-  --accent-secondary: #ffb800;
-  --text-primary: #ffffff;
-  --text-secondary: #a1a1aa;
-  
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --logo-filter: brightness(0) invert(1);
+
+  --accent-primary: #FF6B00;
+  /* Vibrant Kenyan Orange */
+  --accent-secondary: #FF8A00;
+  --text-primary: #FFFFFF;
+  --text-secondary: #A0A0A5;
+
   --font-main: 'Inter', system-ui, -apple-system, sans-serif;
   --font-display: 'Outfit', sans-serif;
-  
-  --shadow-premium: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  --transition-smooth: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+
+  --shadow-premium: 0 20px 40px rgba(0, 0, 0, 0.4);
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -32,7 +34,10 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -53,7 +58,8 @@ button {
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 1140px;
+  /* Simplicity 4.0 Max Baseline */
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -70,11 +76,13 @@ button {
 .gradient-text {
   background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .accent-text {
   background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }

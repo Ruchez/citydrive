@@ -43,6 +43,7 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
                     <a href="/#buy" onClick={(e) => handleAnchorClick(e, 'buy')}>Inventory</a>
                     <Link to="/sell" onClick={() => setIsOpen(false)}>Sell</Link>
                     <a href="/#about" onClick={(e) => handleAnchorClick(e, 'about')}>Company</a>
+                    <Link to="/#contact" className="mobile-only-link" onClick={(e) => handleAnchorClick(e as any, 'contact')}>Connect</Link>
                     <div className="mobile-menu-footer">
                         <p className="menu-footer-label">Direct Concierge</p>
                         <a href="https://wa.me/254726600141" className="menu-whatsapp-link" target="_blank" rel="noopener noreferrer">
@@ -68,7 +69,7 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
                         )}
                     </button>
 
-                    <Link to="/#contact" className="btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.8rem' }} onClick={(e) => handleAnchorClick(e as any, 'contact')}>
+                    <Link to="/#contact" className="btn-primary desktop-only" style={{ padding: '0.6rem 1.5rem', fontSize: '0.8rem' }} onClick={(e) => handleAnchorClick(e as any, 'contact')}>
                         Connect
                     </Link>
                 </div>

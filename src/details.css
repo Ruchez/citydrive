@@ -1,0 +1,484 @@
+/* Vehicle Details Page */
+.vehicle-details-page {
+    padding-top: 0;
+    min-height: 100vh;
+}
+
+.details-hero {
+    position: relative;
+    height: 60vh;
+    min-height: 500px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 4rem;
+    transition: all 0.5s ease;
+}
+
+.gallery-thumbnails {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    gap: 1rem;
+    z-index: 10;
+}
+
+.gallery-thumb {
+    width: 80px;
+    height: 60px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.gallery-thumb.active {
+    border-color: var(--accent-primary);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.details-hero-img-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.details-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.details-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, var(--bg-deep) 10%, transparent 60%);
+}
+
+.details-hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: var(--accent-primary);
+}
+
+.hero-header-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.price-action-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-inquire-hero {
+    background: var(--accent-primary);
+    color: #fff;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    /* Clinical/Clean */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: all 0.3s ease;
+    letter-spacing: 0.02em;
+}
+
+.btn-inquire-hero:hover {
+    background: #ff8533;
+    /* Lighter shade */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+}
+
+.gallery-strip {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 1.5rem 0;
+    margin-top: -2rem;
+    /* Pull up slightly into hero space visual */
+    position: relative;
+    z-index: 5;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.gallery-strip::-webkit-scrollbar {
+    display: none;
+}
+
+.gallery-thumb {
+    min-width: 120px;
+    height: 80px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+    background: var(--bg-surface);
+}
+
+.gallery-thumb.active {
+    border-color: var(--accent-primary);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.details-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.details-price {
+    font-size: 1.8rem;
+    color: var(--accent-primary);
+    font-weight: 600;
+    font-family: var(--font-display);
+}
+
+/* Specs Grid */
+.specs-grid-primary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border-muted);
+}
+
+.spec-card {
+    background: var(--bg-surface);
+    padding: 1.5rem;
+    border-radius: 4px;
+    /* Clinical sharp edges */
+    border: 1px solid var(--border-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.spec-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+}
+
+.spec-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Narrative Section */
+.details-narrative {
+    padding: 4rem 0;
+}
+
+.narrative-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+}
+
+.section-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.narrative-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.deep-specs-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.deep-spec-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.deep-spec-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.deep-spec-value {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.action-bar-floating {
+    display: none;
+    /* Hidden on desktop */
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    background: rgba(20, 20, 22, 0.9);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-muted);
+    padding: 1rem;
+    border-radius: 12px;
+    display: flex;
+    gap: 1rem;
+    z-index: 100;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    align-items: center;
+}
+
+.action-bar-price {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.action-label-small {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.action-price-value {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.btn-inquire {
+    background: var(--accent-primary);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-share {
+    background: transparent;
+    border: 1px solid var(--border-muted);
+    color: var(--text-primary);
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.seller-card {
+    background: var(--bg-surface);
+    padding: 2rem;
+    border: 1px solid var(--border-muted);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.seller-badge {
+    display: inline-block;
+    background: rgba(255, 107, 0, 0.1);
+    color: var(--accent-primary);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.seller-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.seller-info {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.seller-checks {
+    list-style: none;
+    padding: 0;
+}
+
+.seller-checks li {
+    color: var(--text-primary);
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+}
+
+/* Similar Vehicles */
+.similar-section {
+    padding-bottom: 6rem;
+}
+
+@media (max-width: 768px) {
+    .details-hero {
+        height: 45vh;
+        min-height: 350px;
+        padding-bottom: 2rem;
+        align-items: flex-end;
+        /* Ensure content stays at bottom */
+    }
+
+    .details-title {
+        font-size: 2rem;
+        line-height: 1.1;
+    }
+
+    .details-price {
+        font-size: 1.5rem;
+    }
+
+    .specs-grid-primary {
+        grid-template-columns: repeat(2, 1fr);
+        /* Force 2 columns */
+        gap: 1rem;
+        padding: 2rem 0;
+    }
+
+    .spec-card {
+        padding: 1rem;
+    }
+
+    .spec-value {
+        font-size: 1rem;
+    }
+
+    .narrative-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .details-narrative {
+        padding: 2rem 0;
+    }
+
+    .seller-card {
+        position: static;
+        margin-top: 2rem;
+    }
+
+    .deep-specs-list {
+        grid-template-columns: 1fr;
+        /* Stack deep specs */
+        gap: 1rem;
+    }
+
+    .action-group {
+        display: flex;
+        /* Show share button */
+    }
+
+    .vehicle-details-page .container {
+        padding: 0 1rem;
+        /* Unlock horizontal space */
+    }
+
+    .price-action-row {
+        gap: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-inquire-hero {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .gallery-strip {
+        padding: 1rem 0;
+        margin-top: 0;
+    }
+
+    .gallery-thumb {
+        min-width: 100px;
+        height: 70px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .details-title {
+        font-size: 1.75rem;
+    }
+
+    .specs-grid-primary {
+        gap: 0.8rem;
+    }
+}
