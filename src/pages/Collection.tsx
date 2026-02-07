@@ -1,9 +1,34 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { allCars } from '../data/cars'
+import { supabase } from '../lib/supabase'
+import type { Car } from '../data/cars'
 import '../collection.css'
 
 const Collection = () => {
+    const [allCars, setAllCars] = useState<Car[]>([])
+    const [loading, setLoading] = useState(true)
+
+    // Fetch cars from Supabase
+    useEffect(() => {
+        const fetchCars = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('vehicles')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+                setAllCars((data as Car[]) || []);
+            } catch (error) {
+                console.error('Error fetching collection:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCars();
+    }, []);
+
     const [searchQuery, setSearchQuery] = useState('')
     const [selectedBudget, setSelectedBudget] = useState<string>('')
     const [showAdvanced, setShowAdvanced] = useState(false)

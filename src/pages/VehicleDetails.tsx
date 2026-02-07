@@ -1,22 +1,58 @@
 import { useParams, Link } from 'react-router-dom'
-import { cars } from '../data/cars'
 import { useEffect, useState } from 'react'
+import { supabase } from '../lib/supabase'
+import type { Car } from '../data/cars'
 
 const VehicleDetails = () => {
     const { id } = useParams()
-    const car = cars.find(c => c.id === Number(id))
+    const [car, setCar] = useState<Car | null>(null)
+    const [similarCars, setSimilarCars] = useState<Car[]>([])
     const [activeImage, setActiveImage] = useState<string>('')
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        if (car) {
-            setActiveImage(car.img)
+        const fetchCar = async () => {
+            try {
+                // Fetch the specific car
+                const { data: carData, error } = await supabase
+                    .from('vehicles')
+                    .select('*')
+                    .eq('id', id)
+                    .single()
+
+                if (error) throw error;
+
+                if (carData) {
+                    setCar(carData as Car)
+                    setActiveImage(carData.img)
+
+                    // Fetch similar cars (same brand)
+                    const brand = carData.name.split(' ')[0]
+                    const { data: similarData } = await supabase
+                        .from('vehicles')
+                        .select('*')
+                        .ilike('name', `${brand}%`)
+                        .neq('id', id)
+                        .limit(3)
+
+                    setSimilarCars((similarData as Car[]) || [])
+                }
+            } catch (error) {
+                console.error('Error fetching vehicle details:', error)
+            } finally {
+                setLoading(false)
+            }
         }
-    }, [car])
+
+        fetchCar()
+    }, [id])
 
     // Scroll to top on mount
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [id])
+
+    if (loading) return <div className="container" style={{ paddingTop: '150px', textAlign: 'center' }}>Loading...</div>
 
     if (!car) {
         return (
@@ -26,11 +62,6 @@ const VehicleDetails = () => {
             </div>
         )
     }
-
-    // Filter similar cars (same brand or random 3)
-    const similarCars = cars
-        .filter(c => c.id !== car.id && (c.name.split(' ')[0] === car.name.split(' ')[0] || Math.random() > 0.5))
-        .slice(0, 3)
 
     return (
         <main className="vehicle-details-page">

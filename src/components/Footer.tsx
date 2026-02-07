@@ -55,6 +55,13 @@ const Footer = () => {
 
                 <div className="footer-bottom-pure">
                     <p>© 2026 CITYDRIVE AUTO SALES KENYA</p>
+                    <a href="/admin/login" style={{
+                        fontSize: '0.75rem',
+                        color: 'var(--text-muted)',
+                        textDecoration: 'none',
+                        opacity: 0.5,
+                        transition: 'opacity 0.3s ease'
+                    }} onMouseEnter={(e) => e.currentTarget.style.opacity = '1'} onMouseLeave={(e) => e.currentTarget.style.opacity = '0.5'}>Admin</a>
                 </div>
             </div>
         </footer>

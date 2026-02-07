@@ -1,8 +1,34 @@
 import { useNavigate } from 'react-router-dom'
-import { cars } from '../data/cars'
+import { useState, useEffect } from 'react'
+import { supabase } from '../lib/supabase'
+import type { Car } from '../data/cars'
 
 const FeaturedCars = ({ query, maxPrice }: { query: string, maxPrice: number }) => {
     const navigate = useNavigate()
+    const [cars, setCars] = useState<Car[]>([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        const fetchCars = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('vehicles')
+                    .select('*')
+                    .eq('availability', 'Available')
+                    .order('created_at', { ascending: false })
+                    .limit(6);
+
+                if (error) throw error;
+                setCars((data as Car[]) || []);
+            } catch (error) {
+                console.error('Error fetching featured cars:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCars();
+    }, []);
 
     const filteredCars = cars.filter(car => {
         const matchesQuery = car.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -46,9 +72,16 @@ const FeaturedCars = ({ query, maxPrice }: { query: string, maxPrice: number }) 
                     </div>
                 ))}
                 {filteredCars.length === 0 && (
-                    <p style={{ gridColumn: '1/-1', textAlign: 'center', padding: '4rem', color: 'var(--text-secondary)' }}>
-                        No cars found matching "{query}". Try a different model.
-                    </p>
+                    <div style={{ gridColumn: '1/-1', textAlign: 'center', padding: '4rem' }}>
+                        <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+                            {query ? `No cars found matching "${query}". Try a different model.` : 'No vehicles in inventory yet.'}
+                        </p>
+                        {!query && (
+                            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                                Inventory will be added soon via the admin panel.
+                            </p>
+                        )}
+                    </div>
                 )}
             </div>
         </section>
