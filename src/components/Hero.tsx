@@ -37,7 +37,7 @@ const Hero = ({ onSearch }: HeroProps) => {
                     <form className="gallery-search-group" onSubmit={handleSearch}>
                         <input
                             type="text"
-                            placeholder="Search Inventory"
+                            placeholder="Search Vehicle"
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                         />
