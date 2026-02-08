@@ -1,5 +1,4 @@
-import landCruiserImg from '../assets/land_cruiser.jpg'
-import hondaFitImg from '../assets/honda_fit.jpg'
+// Unused imports removed - images now loaded from Supabase
 
 export interface Car {
     id: number;

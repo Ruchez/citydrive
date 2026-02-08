@@ -6,7 +6,6 @@ import '../collection.css'
 
 const Collection = () => {
     const [allCars, setAllCars] = useState<Car[]>([])
-    const [loading, setLoading] = useState(true)
 
     // Fetch cars from Supabase
     useEffect(() => {
@@ -21,8 +20,6 @@ const Collection = () => {
                 setAllCars((data as Car[]) || []);
             } catch (error) {
                 console.error('Error fetching collection:', error);
-            } finally {
-                setLoading(false);
             }
         };
 
