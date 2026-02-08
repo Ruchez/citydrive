@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import heroImg from '../assets/hero.png'
+import heroDesktop from '../assets/hero-desktop.jpg'
+import heroMobile from '../assets/hero-mobile.jpg'
 
 interface HeroProps {
     onSearch: (query: string) => void
@@ -19,7 +20,10 @@ const Hero = ({ onSearch }: HeroProps) => {
     return (
         <header className="hero-gallery hero-dark-mode-forced" ref={heroRef}>
             <div className="gallery-viewport">
-                <img src={heroImg} alt="CityDrive Selection" className="gallery-subject animate-zoom" />
+                <picture className="gallery-subject animate-zoom">
+                    <source media="(max-width: 768px)" srcSet={heroMobile} />
+                    <img src={heroDesktop} alt="CityDrive Selection" />
+                </picture>
                 <div className="gallery-light-wash"></div>
             </div>
 
