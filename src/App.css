@@ -216,8 +216,11 @@ body {
   min-height: 700px;
   display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
   background: var(--bg-deep);
+  margin-bottom: 8rem;
+  /* Breathing room before next section */
 }
 
 .gallery-viewport {
@@ -428,6 +431,8 @@ body {
   .hero-gallery {
     height: 100vh;
     min-height: 100vh;
+    margin-bottom: 4rem;
+    /* Less spacing on mobile */
   }
 
   .gallery-title {
