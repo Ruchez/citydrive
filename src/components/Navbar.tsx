@@ -12,13 +12,31 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
     const [isScrolled, setIsScrolled] = useState(false)
     const location = useLocation()
 
+    const [isVisible, setIsVisible] = useState(true)
+    const [lastScrollY, setLastScrollY] = useState(0)
+
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50)
+            const currentScrollY = window.scrollY
+
+            // Show if at top or scrolling up
+            if (currentScrollY < 10) {
+                setIsVisible(true)
+                setIsScrolled(false)
+            } else {
+                setIsScrolled(true)
+                if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                    setIsVisible(false) // Scrolling down & past threshold
+                } else {
+                    setIsVisible(true) // Scrolling up
+                }
+            }
+            setLastScrollY(currentScrollY)
         }
+
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
-    }, [])
+    }, [lastScrollY])
 
     // Smooth scroll for anchors on home page
     const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -33,7 +51,7 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
     }
 
     return (
-        <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+        <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${!isVisible ? 'navbar-hidden' : ''}`}>
             <div className="nav-content">
                 <Link to="/" className="logo-container" onClick={() => setIsOpen(false)}>
                     <img src={logo} alt="CityDrive Auto" className="nav-logo" />

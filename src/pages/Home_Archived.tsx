@@ -1,15 +1,16 @@
-import { useEffect } from 'react'
 import Hero from '../components/Hero'
 import FeaturedCars from '../components/FeaturedCars'
-import AboutSection from '../components/AboutSection'
+import ValueProps from '../components/ValueProps'
+import SellCTA from '../components/SellCTA'
 
 interface HomeProps {
     searchQuery: string
     setSearchQuery: (query: string) => void
 }
 
+import { useEffect } from 'react'
+
 const Home = ({ searchQuery, setSearchQuery }: HomeProps) => {
-    // Scroll Reveal Logic (Preserved)
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -24,18 +25,21 @@ const Home = ({ searchQuery, setSearchQuery }: HomeProps) => {
     }, [])
 
     return (
-        <main className="home-v2">
+        <main>
             <div className="reveal revealed">
                 <Hero onSearch={setSearchQuery} />
             </div>
 
-            {/* Fluid Content Wrapper */}
-            <div className="reveal min-h-[50vh] flex flex-col justify-center">
+            <div className="reveal">
                 <FeaturedCars query={searchQuery} maxPrice={Infinity} />
             </div>
 
             <div className="reveal">
-                <AboutSection />
+                <ValueProps />
+            </div>
+
+            <div className="reveal">
+                <SellCTA />
             </div>
         </main>
     )

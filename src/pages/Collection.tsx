@@ -136,7 +136,7 @@ const Collection = () => {
                         Back to Home
                     </Link>
                     <h1 className="collection-title">Full Collection</h1>
-                    <p className="collection-subtitle">Browse our complete inventory of {allCars.length} premium vehicles</p>
+                    <p className="collection-subtitle">Browse our complete inventory of {allCars.length} vehicles</p>
                 </div>
             </section>
 

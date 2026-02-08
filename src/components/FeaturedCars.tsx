@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { supabase } from '../lib/supabase'
 import type { Car } from '../data/cars'
@@ -11,6 +11,7 @@ const FeaturedCars = ({ query, maxPrice }: { query: string, maxPrice: number }) 
     useEffect(() => {
         const fetchCars = async () => {
             try {
+                console.log('Fetching featured cars...');
                 const { data, error } = await supabase
                     .from('vehicles')
                     .select('*')
@@ -18,7 +19,12 @@ const FeaturedCars = ({ query, maxPrice }: { query: string, maxPrice: number }) 
                     .order('created_at', { ascending: false })
                     .limit(6);
 
-                if (error) throw error;
+                if (error) {
+                    console.error('Supabase error:', error);
+                    throw error;
+                }
+
+                console.log('Fetched cars:', data);
                 setCars((data as Car[]) || []);
             } catch (error) {
                 console.error('Error fetching featured cars:', error);
@@ -31,17 +37,38 @@ const FeaturedCars = ({ query, maxPrice }: { query: string, maxPrice: number }) 
     }, []);
 
     const filteredCars = cars.filter(car => {
-        const matchesQuery = car.name.toLowerCase().includes(query.toLowerCase()) ||
-            car.specs.toLowerCase().includes(query.toLowerCase());
-        const matchesPrice = car.rawPrice <= maxPrice;
+        if (!car) return false;
+        const matchesQuery = (car.name || '').toLowerCase().includes(query.toLowerCase()) ||
+            (car.specs || '').toLowerCase().includes(query.toLowerCase());
+        const matchesPrice = (car.rawPrice || 0) <= maxPrice;
         return matchesQuery && matchesPrice;
     })
 
+    if (loading) {
+        return (
+            <section id="buy" className="featured-section container">
+                <h2 className="collection-title-pure">
+                    Featured <span className="title-accent">Inventory</span>
+                </h2>
+                <div style={{ display: 'flex', justifyContent: 'center', padding: '4rem' }}>
+                    <div className="loader" style={{
+                        width: '30px',
+                        height: '30px',
+                        border: '2px solid var(--border-muted)',
+                        borderTopColor: 'var(--accent-gold)',
+                        borderRadius: '50%',
+                        animation: 'spin 1s linear infinite'
+                    }}></div>
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section id="buy" className="featured-section container">
-            <h2 className="collection-title-pure">
-                The CAR <span className="title-accent">Collection</span>
-            </h2>
+            <div className="section-header">
+                <h2 className="section-title">Featured Inventory</h2>
+            </div>
 
             <div className="car-grid">
                 {filteredCars.map(car => (
@@ -71,21 +98,29 @@ const FeaturedCars = ({ query, maxPrice }: { query: string, maxPrice: number }) 
                         </div>
                     </div>
                 ))}
-                {filteredCars.length === 0 && (
-                    <div style={{ gridColumn: '1/-1', textAlign: 'center', padding: '4rem' }}>
-                        <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>
-                            {query ? `No cars found matching "${query}". Try a different model.` : 'No vehicles in inventory yet.'}
-                        </p>
-                        {!query && (
-                            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                                Inventory will be added soon via the admin panel.
-                            </p>
-                        )}
-                    </div>
-                )}
             </div>
+
+            {filteredCars.length === 0 && (
+                <div style={{ textAlign: 'center', padding: '4rem', background: 'var(--bg-surface)', borderRadius: '8px' }}>
+                    <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+                        {query ? `No cars found matching "${query}".` : 'Our featured collection is being updated.'}
+                    </p>
+                    <button onClick={() => navigate('/collection')} className="btn-secondary">
+                        View Full Inventory
+                    </button>
+                </div>
+            )}
+            {/* View All Button */}
+            {cars.length > 0 && (
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '4rem' }}>
+                    <Link to="/collection" className="collection-link">
+                        View Full Inventory
+                        <span style={{ fontSize: '1.2em', lineHeight: 1 }}>→</span>
+                    </Link>
+                </div>
+            )}
         </section>
-    )
-}
+    );
+};
 
 export default FeaturedCars
