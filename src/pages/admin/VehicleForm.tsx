@@ -156,14 +156,13 @@ const VehicleForm = () => {
                         </div>
 
                         <div className="form-group">
-                            <label>Year *</label>
+                            <label>Year</label>
                             <input
                                 type="number"
                                 value={formData.year}
-                                onChange={(e) => setFormData({ ...formData, year: parseInt(e.target.value) })}
+                                onChange={(e) => setFormData({ ...formData, year: parseInt(e.target.value) || new Date().getFullYear() })}
                                 min="2000"
                                 max={new Date().getFullYear() + 1}
-                                required
                             />
                         </div>
 
@@ -179,17 +178,16 @@ const VehicleForm = () => {
                         </div>
 
                         <div className="form-group">
-                            <label>Location *</label>
+                            <label>Location</label>
                             <input
                                 type="text"
                                 value={formData.location}
                                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                                required
                             />
                         </div>
 
                         <div className="form-group">
-                            <label>Availability *</label>
+                            <label>Availability</label>
                             <select
                                 value={formData.availability}
                                 onChange={(e) => setFormData({ ...formData, availability: e.target.value as any })}
@@ -201,7 +199,7 @@ const VehicleForm = () => {
                         </div>
 
                         <div className="form-group">
-                            <label>Seller Type *</label>
+                            <label>Seller Type</label>
                             <select
                                 value={formData.sellerType}
                                 onChange={(e) => setFormData({ ...formData, sellerType: e.target.value as any })}
@@ -218,7 +216,7 @@ const VehicleForm = () => {
                     <h2>Technical Specifications</h2>
                     <div className="form-grid">
                         <div className="form-group">
-                            <label>Drive Type *</label>
+                            <label>Drive Type</label>
                             <select
                                 value={formData.drive}
                                 onChange={(e) => setFormData({ ...formData, drive: e.target.value })}
@@ -230,29 +228,27 @@ const VehicleForm = () => {
                         </div>
 
                         <div className="form-group">
-                            <label>Mileage *</label>
+                            <label>Mileage</label>
                             <input
                                 type="text"
                                 value={formData.mileage}
                                 onChange={(e) => setFormData({ ...formData, mileage: e.target.value })}
                                 placeholder="e.g., 45,000 KM"
-                                required
                             />
                         </div>
 
                         <div className="form-group">
-                            <label>Engine Size *</label>
+                            <label>Engine Size</label>
                             <input
                                 type="text"
                                 value={formData.engineSize}
                                 onChange={(e) => setFormData({ ...formData, engineSize: e.target.value })}
                                 placeholder="e.g., 2500 CC"
-                                required
                             />
                         </div>
 
                         <div className="form-group">
-                            <label>Fuel Type *</label>
+                            <label>Fuel Type</label>
                             <select
                                 value={formData.fuelType}
                                 onChange={(e) => setFormData({ ...formData, fuelType: e.target.value })}
@@ -265,18 +261,17 @@ const VehicleForm = () => {
                         </div>
 
                         <div className="form-group">
-                            <label>Horsepower *</label>
+                            <label>Horsepower</label>
                             <input
                                 type="text"
                                 value={formData.horsePower}
                                 onChange={(e) => setFormData({ ...formData, horsePower: e.target.value })}
                                 placeholder="e.g., 250 Hp"
-                                required
                             />
                         </div>
 
                         <div className="form-group">
-                            <label>Transmission *</label>
+                            <label>Transmission</label>
                             <select
                                 value={formData.transmission}
                                 onChange={(e) => setFormData({ ...formData, transmission: e.target.value })}
@@ -289,18 +284,17 @@ const VehicleForm = () => {
                         </div>
 
                         <div className="form-group">
-                            <label>Torque *</label>
+                            <label>Torque</label>
                             <input
                                 type="text"
                                 value={formData.torque}
                                 onChange={(e) => setFormData({ ...formData, torque: e.target.value })}
                                 placeholder="e.g., 350 Nm"
-                                required
                             />
                         </div>
 
                         <div className="form-group">
-                            <label>Aspiration *</label>
+                            <label>Aspiration</label>
                             <select
                                 value={formData.aspiration}
                                 onChange={(e) => setFormData({ ...formData, aspiration: e.target.value })}
@@ -313,26 +307,24 @@ const VehicleForm = () => {
                         </div>
 
                         <div className="form-group">
-                            <label>0-100 km/h *</label>
+                            <label>0-100 km/h</label>
                             <input
                                 type="text"
                                 value={formData.acceleration}
                                 onChange={(e) => setFormData({ ...formData, acceleration: e.target.value })}
                                 placeholder="e.g., 7.5 Secs"
-                                required
                             />
                         </div>
 
                         <div className="form-group">
-                            <label>Condition Score (1-10) *</label>
+                            <label>Condition Score (1-10)</label>
                             <input
                                 type="number"
                                 step="0.1"
                                 min="1"
                                 max="10"
                                 value={formData.conditionScore}
-                                onChange={(e) => setFormData({ ...formData, conditionScore: parseFloat(e.target.value) })}
-                                required
+                                onChange={(e) => setFormData({ ...formData, conditionScore: parseFloat(e.target.value) || 8.5 })}
                             />
                         </div>
                     </div>
@@ -347,7 +339,6 @@ const VehicleForm = () => {
                             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                             placeholder="Detailed description of the vehicle..."
                             rows={6}
-                            required
                         />
                     </div>
                 </div>
