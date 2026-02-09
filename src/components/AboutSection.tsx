@@ -9,8 +9,7 @@ const AboutSection = () => {
 
                     <div className="about-narrative">
                         <p>
-                            Buying a car in Kenya can be stressful. We all worry about fake mileage,
-                            hidden mechanical issues, and the hassle of paperwork.
+                            Buying a car in Kenya can be stressful. We all worry about hidden mechanical issues, and the hassle of paperwork.
                         </p>
                         <p>
                             <strong>At CityDrive, we do things differently.</strong>

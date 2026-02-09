@@ -16,7 +16,6 @@ const VehicleForm = () => {
         location: 'Nairobi, Kenya',
         availability: 'Available' as 'Available' | 'Sold' | 'Reserved',
         drive: '2WD',
-        mileage: '',
         engineSize: '',
         fuelType: 'Petrol',
         horsePower: '',
@@ -227,15 +226,6 @@ const VehicleForm = () => {
                             </select>
                         </div>
 
-                        <div className="form-group">
-                            <label>Mileage</label>
-                            <input
-                                type="text"
-                                value={formData.mileage}
-                                onChange={(e) => setFormData({ ...formData, mileage: e.target.value })}
-                                placeholder="e.g., 45,000 KM"
-                            />
-                        </div>
 
                         <div className="form-group">
                             <label>Engine Size</label>

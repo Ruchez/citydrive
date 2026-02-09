@@ -11,7 +11,6 @@ export interface Car {
     location: string;
     availability: 'Available' | 'Sold' | 'Reserved';
     drive: string;
-    mileage: string;
     engineSize: string;
     fuelType: string;
     horsePower: string;

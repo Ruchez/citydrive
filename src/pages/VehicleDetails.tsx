@@ -119,10 +119,6 @@ const VehicleDetails = () => {
                         <span className="spec-value">{car.year}</span>
                     </div>
                     <div className="spec-card">
-                        <span className="spec-label">Mileage</span>
-                        <span className="spec-value">{car.mileage}</span>
-                    </div>
-                    <div className="spec-card">
                         <span className="spec-label">Engine</span>
                         <span className="spec-value">{car.engineSize}</span>
                     </div>
